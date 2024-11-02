@@ -1,0 +1,31 @@
+{
+  "name": "0x02-react_props",
+  "version": "1.0.0",
+  "workspaces": [
+    "task_0/dashboard",
+    "task_1/dashboard",
+    "task_2/dashboard",
+    "task_3/dashboard",
+    "task_4/dashboard",
+    "task_5/dashboard"
+  ],
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^7.1.2",
+    "image-webpack-loader": "^8.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "style-loader": "^4.0.0"
+  },
+  "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
+    "enzyme": "^3.11.0"
+  }
+}
