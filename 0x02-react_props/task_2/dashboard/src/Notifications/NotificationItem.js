@@ -9,3 +9,4 @@ const NotificationItem = ({ type, html, value }) => {
 }
 
 export default NotificationItem;
+
