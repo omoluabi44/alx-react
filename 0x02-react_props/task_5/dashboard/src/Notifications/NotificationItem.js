@@ -1,4 +1,6 @@
 import React from "react";
+import "./Notifications.css"
+import PropTypes from "prop-types";
 
 const NotificationItem = ({ type, html, value }) => {
     return ( 
@@ -7,5 +9,15 @@ const NotificationItem = ({ type, html, value }) => {
         </li>
     );
 }
+NotificationItem.prototype = {
+    type: PropTypes.string.isRequired,
+    __html: PropTypes.shape({
+        html:PropTypes.string,
+    }),
+};
+NotificationItem.defaultProps = {
+    type: "default"
+}
 
 export default NotificationItem;
+
