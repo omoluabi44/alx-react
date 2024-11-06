@@ -1,3 +1,4 @@
+import PropTypes, { string } from "prop-types";
 import { React, Component }from "react";
 
 class BodySection extends Component{
@@ -15,3 +16,9 @@ class BodySection extends Component{
     }
 
 }
+
+BodySection.PropTypes = {
+    title: PropTypes.string.isRequired,
+    children: PropTypes.oneOfType[PropTypes.string, PropTypes.element, PropTypes.node]
+}
+export default BodySection;
