@@ -6,7 +6,9 @@ import Footer from "../Footer/Footer";
 import CourseList from "../CourseList/CourseList";
 import { Component } from 'react';
 import PropTypes from "prop-types";
+import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import "./App.css";
+import BodySection from "../BodySection/BodySection";
 import { getLatestNotification } from "../utils/utils";
 
 const listCourses = [
@@ -50,9 +52,14 @@ class  App extends Component {
             <Notifications listNotifications={listNotifications} />
             <Header />
           </div>
-          {isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login />}
+          {isLoggedIn ? <BodySectionWithMarginBottom title="Course list"> <CourseList listCourses={listCourses} /> </BodySectionWithMarginBottom>  : 
+             <BodySectionWithMarginBottom title="Log in to continue"> <Login /> </BodySectionWithMarginBottom> 
+          }
           <Footer />
         </div>
+          <BodySection title="News from the School"><p>
+            hello world
+            </p></BodySection>
       </React.Fragment>
     );
   }

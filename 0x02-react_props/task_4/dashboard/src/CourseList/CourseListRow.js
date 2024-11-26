@@ -44,8 +44,5 @@ const CourseListRow = ( {isHeader= false,textFirstCell,textSecondCell= null} ) =
 CourseListRow.PropTypes = {
     isHeader: PropTypes.bool,
     textFirstCell: PropTypes.string.isRequired,
-    textSecondCell: PropTypes.string, 
+    textSecondCell: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
-
- 
-export default CourseListRow;

@@ -1,42 +1,66 @@
-import React from 'react';
-import './Notifications.css'
-import closeIcon from '../assets/close-icon.png'
-import { getLatestNotification } from '../utils/utils';
+import React from "react";
+import "./Notifications.css";
+import closeIcon from "../assets/close-icon.png";
 import NotificationItem from "./NotificationItem";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import NotificationItemShape from "./NotificationItemShape";
 
- 
-const Notifications = ({displayDrawer=true}) => {
- 
-    return ( 
-      <>
-      <div className='menuItem'> <p> Your notifications </p></div>
-       {displayDrawer && 
-          (<div className='Notifications'>
-          <button
-            style={{ color: "#3a3a3a", fontWeight: "bold", background: "none", border: "none", fontSize: "15px", position: "absolute", right: "2px", top: "2px", cursor: "pointer" }}
-            aria-label="Close"
-            onClick={()=>console.log("Close button has been clicked")}
-          >
-            <img src={closeIcon} alt="closeIcon" width="10px" />
-          </button>
-            <p>Here is the list of notifications </p>
+function Notifications({ displayDrawer, listNotifications }) {
+  return (
+    <React.Fragment>
+      {displayDrawer ? (
+        <div className="'flex-area'">
+          <div className="menuItem">
+            <p>Your notifications</p>
+          </div>
+          <div className="Notifications">
+            {/* <p>Here is the list of notifications</p> */}
             <ul>
-            <NotificationItem type="default" value="New course available" />
-            <NotificationItem type="urgent" value="New resume available" />
-            <NotificationItem type="urgent" html={getLatestNotification()} />
-                </ul>
-            </div>
-         )
-        }
-        </>
+              {listNotifications && listNotifications.length > 0 ? (
+                listNotifications.map(({ id, html, type, value }) => (
+                  <>
+                    <NotificationItem key={id} type={type} value={value} html={html} />
+                    {/* <button
+                      style={{ color: "#3a3a3a", fontWeight: "bold", background: "none", border: "none", fontSize: "10px", position: "absolute", right: "2px", top: "2px", cursor: "pointer" }}
+                      aria-label="Close"
+                      onClick={console.log("Close button has been clicked")}
+                    >
+                      <img src={closeIcon} alt="closeIcon" width="10px" />
+                    </button> */}
+                  </>
+                ))
+              ) : (
+                <div className="">
+                  <NotificationItem value="No new notification for now" />
+                  <button
+                    style={{ color: "#3a3a3a", fontWeight: "bold", background: "none", border: "none", fontSize: "10px", position: "absolute", right: "2px", top: "2px", cursor: "pointer" }}
+                    aria-label="Close"
+                    onClick={console.log("Close button has been clicked")}
+                  >
+                    <img src={closeIcon} alt="closeIcon" width="10px" />
+                  </button>
+                </div>
+              )}
+            </ul>
+          </div>
+        </div>
+      ) : (
+        <div className="menuItem">
+          <p>Your notifications</p>
+        </div>
+      )}
+    </React.Fragment>
+  );
+}
 
-     );
-}
-Notification.PropTypes ={
+Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
-}
-Notification.defualtProps ={
+  listNotifications: PropTypes.arrayOf(NotificationItemShape),
+};
+
+Notifications.defaultProps = {
   displayDrawer: false,
-}
-export default Notifications  ;
+  listNotifications: [],
+};
+
+export default Notifications;

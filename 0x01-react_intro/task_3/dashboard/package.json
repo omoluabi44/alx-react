@@ -6,8 +6,11 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.14",
     "@zarconontol/enzyme-adapter-react-18": "^0.7.3",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.8",
+    "jest": "^29.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
@@ -20,6 +23,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +45,9 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
-    "gh-pages": "^6.2.0"
+    "gh-pages": "^6.2.0",
+    "text-encoding-polyfill": "^0.6.7"
   },
+
   "homepage": "https://omoluabi44.github.io/alx-react"
 }
