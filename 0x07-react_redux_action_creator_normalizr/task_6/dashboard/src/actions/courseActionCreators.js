@@ -8,6 +8,7 @@ export const selectCourseFunc =(index)=>{
     }
 
 }
+export const boundSelectCourse = (index) => dispatch(selectCourseFunc(index));
 
 export const unSelectCourseFunc =(index)=>{
     return{
@@ -16,3 +17,4 @@ export const unSelectCourseFunc =(index)=>{
     }
 
 }
+export const boundUnSelectCourse = (index) => dispatch(unSelectCourseFunc(index));
