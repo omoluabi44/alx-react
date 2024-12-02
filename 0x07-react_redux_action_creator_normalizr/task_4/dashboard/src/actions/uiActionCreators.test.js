@@ -1,39 +1,31 @@
-import { logIn,logOut,hideNotificationDrawer,displayNotificationDrawer } from "./uiActionCreators";
-import { DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER, LOGIN, LOGOUT } from "./uiActionTypes";
+import { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER } from "./uiActionTypes";
 
-describe('the login, logout, hide and display', () => {
-    it('the login return correct output', () => {
+import { login, logout, hideNotificationDrawer, displayNotificationDrawer } from "./uiActionCreators";
 
-        const email = 'test@example.com';
-        const password = 'password123';
-        const expectOutput = {
-            type: LOGIN,
-            user:{email, password}
-        }
-        const action = logIn(email,password)
-        expect(action).toEqual(expectOutput)
+describe("tests for UI notification action creators", () => {
+  it("should create proper action for login", () => {
+    const email = "james@gmail.com";
+    const password = "heheheh";
 
+    expect(login(email, password)).toEqual({
+      type: LOGIN,
+      user: { email: "james@gmail.com", password: "heheheh" },
     });
-    it('test the displayNotificationDrawer  ', () => {
-        const expectOutput = {
-            type: DISPLAY_NOTIFICATION_DRAWER
-        }
-        const action = displayNotificationDrawer();
-        expect(action).toEqual(expectOutput)
+  });
+
+  it("should create proper action for logout", () => {
+    expect(logout()).toEqual({ type: LOGOUT });
+  });
+
+  it("should create proper action for displaying notification drawer", () => {
+    expect(displayNotificationDrawer()).toEqual({
+      type: DISPLAY_NOTIFICATION_DRAWER,
     });
-    it('test the hideNotificationDrawer  ', () => {
-        const expectOutput = {
-            type: HIDE_NOTIFICATION_DRAWER
-        }
-        const action = hideNotificationDrawer();
-        expect(action).toEqual(expectOutput)
+  });
+
+  it("should create proper action for hiding notification drawer", () => {
+    expect(hideNotificationDrawer()).toEqual({
+      type: HIDE_NOTIFICATION_DRAWER,
     });
-    it('test the Logut ', () => {
-        const expectOutput = {
-            type: LOGOUT
-        }
-        const action = logOut();
-        expect(action).toEqual(expectOutput)
-    });
-    
+  });
 });

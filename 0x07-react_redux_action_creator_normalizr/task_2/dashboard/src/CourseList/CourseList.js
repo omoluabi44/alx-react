@@ -3,6 +3,7 @@ import { StyleSheet, css } from "aphrodite";
 import CourseListRow from "./CourseListRow";
 import PropTypes from "prop-types";
 import CourseShape from "./CourseShape";
+
 function CourseList({ listCourses }) {
   return (
     <table id="CourseList" className={css(styles.table)}>

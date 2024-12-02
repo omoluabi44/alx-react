@@ -1,4 +1,4 @@
-import React, {  PureComponent } from "react";
+import React, { Component, PureComponent } from "react";
 import { StyleSheet, css } from "aphrodite";
 import closeIcon from "../assets/close-icon.png";
 import NotificationItem from "./NotificationItem";
@@ -8,18 +8,18 @@ import NotificationItemShape from "./NotificationItemShape";
 class Notifications extends PureComponent {
   constructor(props) {
     super(props);
-
   }
-
-
-
- 
 
   render() {
     return (
       <React.Fragment>
         {!this.props.displayDrawer ? (
-          <div className={css(styles.menuItem)} onClick={this.props.handleDisplayDrawer}>
+          <div
+            className={css(styles.menuItem)}
+            onClick={() => {
+              this.props.handleDisplayDrawer();
+            }}
+          >
             <p>Your notifications</p>
           </div>
         ) : (
@@ -49,7 +49,7 @@ class Notifications extends PureComponent {
             <ul>
               {this.props.listNotifications.length == 0 ? <NotificationItem type="default" value="No new notification for now" /> : null}
               {this.props.listNotifications.map((val, idx) => {
-                return <NotificationItem type={val.type} value={val.value} html={val.html} key={val.id} markNotificationAsRead={this.props.markNotificationAsRead} id={val.id} />;
+                return <NotificationItem type={val.type} value={val.value} html={val.html} key={val.id} markAsRead={this.markNotificationAsRead} id={val.id} />;
               })}
             </ul>
           </div>

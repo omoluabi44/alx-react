@@ -1,75 +1,54 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, css } from "aphrodite";
+import PropTypes from "prop-types";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
+function Login(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [enableSubmit, setEnableSubmit] = useState(false);
 
-   this.state ={
-    email: "",
-    password:"",
-    enableSubmit:false,
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    props.logIn(e.target.elements.email.value, e.target.elements.password.value);
   };
-   this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-   this.handleChangeEmail = this.handleChangeEmail.bind(this);
-   this.handleChangePassword = this.handleChangePassword.bind(this)
-  }
-  handleLoginSubmit (event){
-    event.preventDefault();
-    const {email, password} = this.state;
-    this.props.logIn(email, password)
-  }
-  handleChangeEmail (e){
-    this.setState({email: e.target.value}, this.enableSubmitButton)
 
-  }
-  handleChangePassword(e){
-    this.setState({password: e.target.value}, this.enableSubmitButton)
-  }
-  enableSubmitButton(){
-    const {email, password} = this.state;
-    if(email && password){
-      this.setState({enableSubmit:true})
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    if (email !== "" && password !== "") {
+      setEnableSubmit(true);
+    } else {
+      if (enableSubmit !== false) {
+        setEnableSubmit(false);
+      }
     }
-    else{
-      this.setState({enableSubmit:false})
-    }
-  }
-render(){
+  }, [email, password]);
+
   return (
-    <>
-        <div className={css(styles["App-body"])}>
-          <p>Login to access the full dashboard</p>
-          <form onSubmit={this.handleLoginSubmit}>
-            <label htmlFor="email">Email:</label>
-            <input
-              className={css(styles.input)}
-              type="email"
-              value={this.state.email}
-              name="email"
-              onChange={this.handleChangeEmail}
-            />
-            <label htmlFor="password">Password:</label>
-            <input
-              className={css(styles.input)}
-              type="password"
-              value={this.state.password}
-              name="password"
-              onChange={this.handleChangePassword}
-            />
-            <input
-              type="submit"
-              value="Submit"
-              disabled={!this.state.enableSubmit}
-            />
-          </form>
-        </div>
-      </>
+    <React.Fragment>
+      <div className={css(styles["App-body"])}>
+        <p>Login to access the full dashboard</p>
+        <form onSubmit={handleLoginSubmit}>
+          <label htmlFor="email">Email:</label>
+          <input className={css(styles.input)} type="email" id="email" name="email" value={email} onChange={handleChangeEmail} />
+          <label htmlFor="password">Password:</label>
+          <input className={css(styles.input)} type="password" id="password" name="password" value={password} onChange={handleChangePassword} />
+          <input type="submit" value="Ok" disabled={!enableSubmit} />
+        </form>
+      </div>
+    </React.Fragment>
   );
 }
-}
-  
+
+Login.propTypes = {
+  logIn: PropTypes.func,
+};
 
 const styles = StyleSheet.create({
   "App-body": {

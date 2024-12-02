@@ -1,18 +1,15 @@
-import { selectCourse,unSelectCourse } from "./courseActionTypes";
-import { bindActionCreators } from 'redux';
+import { SELECT_COURSE, UNSELECT_COURSE } from "./courseActionTypes";
 
-export const selectCourseFunc =(index)=>{
-    return{
-        ...selectCourse,
-       index
-    }
-
+export function selectCourse(index) {
+  return {
+    type: SELECT_COURSE,
+    index: index,
+  };
 }
 
-export const unSelectCourseFunc =(index)=>{
-    return{
-        ...unSelectCourse,
-        index
-    }
-
+export function unSelectCourse(index) {
+  return {
+    type: UNSELECT_COURSE,
+    index: index,
+  };
 }

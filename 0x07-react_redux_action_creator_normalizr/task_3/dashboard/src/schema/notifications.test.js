@@ -68,11 +68,11 @@ describe("Test for Notifications.js", () => {
 
   it("should have a correct notifications entity", () => {
     const notificationDummy = {
+      author: "5debd764f8452ef92346c772",
+      context: "3068c575-d619-40af-bf12-dece1ee18dd3",
       id: "5debd7642e815cd350407777",
-      author: "5debd764f8452ef92346c772", // Reference to author ID
-      context: "3068c575-d619-40af-bf12-dece1ee18dd3" // Reference to context ID
     };
-  
+
     expect(normalized.entities.notification["5debd7642e815cd350407777"]).toEqual(notificationDummy);
   });
 });

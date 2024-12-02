@@ -1,7 +1,5 @@
-import NotificationsData from './notifications.json';
+import * as notificationData from "../../../../notifications.json";
 
-export default function getAllNotificationsByUser(getId) {
-    return NotificationsData.filter((data)=> data.author.id === getId).map((data) =>data.context )
-
-    
+export default function getAllNotificationsByUser(userId) {
+  return notificationData.filter((notification) => notification.author.id === userId).map((notification) => notification.context);
 }
