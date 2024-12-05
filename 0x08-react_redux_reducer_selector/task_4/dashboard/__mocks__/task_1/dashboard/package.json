@@ -48,7 +48,6 @@
     "redux": "^4.2.0",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.4.1",
-    "react-scripts": "5.0.1",
-    "immutable":"^5.0.1"
+    "react-scripts": "5.0.1"
   }
 }
