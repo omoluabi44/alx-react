@@ -9,7 +9,7 @@ import uiReducer from "./reducers/uiReducer";
 const store = createStore(uiReducer)
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
+    <Provider store={store}>
     <App />
     </Provider>
   </React.StrictMode>,
