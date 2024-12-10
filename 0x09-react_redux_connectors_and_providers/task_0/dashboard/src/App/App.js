@@ -11,13 +11,13 @@ import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
 import { AppContext, user } from "./AppContext";
 import { connect } from "react-redux";
+import { displayNotificationDrawer, hideNotificationDrawer } from "../actions/uiActionCreators";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayDrawer: false,
       user: user,
       logOut: this.logOut,
 
@@ -29,8 +29,6 @@ class App extends React.Component {
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
@@ -50,13 +48,6 @@ class App extends React.Component {
     }
   }
 
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-  }
-
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
-  }
 
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress);
@@ -101,8 +92,8 @@ class App extends React.Component {
                 markNotificationAsRead={this.markNotificationAsRead}
                 listNotifications={this.state.listNotifications}
                 displayDrawer={this.props.displayDrawer}
-                handleDisplayDrawer={this.handleDisplayDrawer}
-                handleHideDrawer={this.handleHideDrawer}
+                handleDisplayDrawer={this.props.displayNotificationDrawer}
+                handleHideDrawer={this.props.hideNotificationDrawer}
               />
               <Header />
             </div>
@@ -136,6 +127,10 @@ export const mapStateToProps = (state)=>{
   };
 
 };
+export const mapDispatchToProps = {
+  displayNotificationDrawer,
+  hideNotificationDrawer
+}
 
 const styles = StyleSheet.create({
   App: {
@@ -156,5 +151,7 @@ App.defaultProps = {
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
+  displayNotificationDrawer: PropTypes.func,
+  hideNotificationDrawer: PropTypes.func,
 };
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
