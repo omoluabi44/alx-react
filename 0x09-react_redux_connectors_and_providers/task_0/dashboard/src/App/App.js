@@ -100,13 +100,13 @@ class App extends React.Component {
               <Notifications
                 markNotificationAsRead={this.markNotificationAsRead}
                 listNotifications={this.state.listNotifications}
-                displayDrawer={this.state.displayDrawer}
+                displayDrawer={this.props.displayDrawer}
                 handleDisplayDrawer={this.handleDisplayDrawer}
                 handleHideDrawer={this.handleHideDrawer}
               />
               <Header />
             </div>
-            {this.state.user.isLoggedIn ? (
+            {this.props.isLoggedIn ? (
               <BodySectionWithMarginBottom title="Course list">
                 <CourseList listCourses={this.listCourses} />
               </BodySectionWithMarginBottom>
@@ -131,7 +131,8 @@ class App extends React.Component {
 
 export const mapStateToProps = (state)=>{
   return {
-    isLoggedIn: state.get("isUserLoggedIn")
+    isLoggedIn: state.get("isUserLoggedIn"),
+    displayDrawer: state.get('isNotificationDrawerVisible')
   };
 
 };
