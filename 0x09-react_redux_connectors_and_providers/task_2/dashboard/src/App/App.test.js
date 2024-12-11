@@ -171,8 +171,12 @@
 
 import { mapStateToProps } from "./App"; // Import mapStateToProps
 import { fromJS } from "immutable"; // Immutable.js to create a state from plain JS object
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import App from "./App";
 
 describe("mapStateToProps", () => {
+  const mockLogin = jest.fn();
   it("should return the correct isLoggedIn value when passing the state", () => {
     // Creating the state using Immutable's fromJS
     const state = fromJS({
@@ -184,5 +188,33 @@ describe("mapStateToProps", () => {
 
     // Check that the function returns the expected object
     expect(result).toEqual({ isLoggedIn: true });
+  });
+
+  it('renders CourseList when logged in', () => {
+    const props = {
+      isLoggedIn: true,
+      user: {
+        email: 'user@example.com',
+        isLoggedIn: true,
+      },
+      login: mockLogin,
+    };
+
+    render(<App {...props} />);
+    
+    expect(screen.getByText('Course list')).toBeInTheDocument();
+    expect(screen.queryByText('Log in to continue')).not.toBeInTheDocument();
+  });
+  it('renders Login when not logged in', () => {
+    const props = {
+      isLoggedIn: false,
+      user: {},
+      login: mockLogin,
+    };
+
+    render(<App {...props} />);
+    
+    expect(screen.getByText('Log in to continue')).toBeInTheDocument();
+    expect(screen.queryByText('Course list')).not.toBeInTheDocument();
   });
 });

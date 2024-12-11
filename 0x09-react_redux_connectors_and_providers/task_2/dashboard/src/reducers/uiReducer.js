@@ -3,7 +3,7 @@ import {Map} from "immutable"
 
 export const initState = Map({
     isNotificationDrawerVisible: false,
-    isUserLoggedIn: true,
+    isUserLoggedIn: false,
     user: Map()
 })
 export default function uiReducer(state=initState, actions){

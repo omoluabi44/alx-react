@@ -3,7 +3,7 @@ import logo from "../assets/holberton-logo.jpg";
 import { StyleSheet, css } from "aphrodite";
 import { AppContext } from "../App/AppContext";
 import { logout } from "../actions/uiActionCreators";
-
+import { connect } from "react-redux";
 function Header({user, logout}) {
 
 
