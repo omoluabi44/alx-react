@@ -19,7 +19,6 @@ class App extends React.Component {
 
     this.state = {
       user: user,
-      logOut: this.logOut,
 
       listNotifications: [
         { id: 1, type: "default", value: "New course available" },
@@ -65,7 +64,7 @@ class App extends React.Component {
       <AppContext.Provider
         value={{
           user: this.state.user,
-          logout: this.state.logOut,
+          logout: this.props.logOut,
         }}
       >
         <React.Fragment>
@@ -86,7 +85,7 @@ class App extends React.Component {
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login logIn={this.login} />
+                <Login logIn={this.props.login} />
               </BodySectionWithMarginBottom>
             )}
             <BodySection title="News from the school">

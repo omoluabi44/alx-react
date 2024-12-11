@@ -17,7 +17,9 @@ export default function uiReducer(state=initState, actions){
         case "LOGIN_FAILURE":
             return state.set("isUserLoggedIn",false);
         case "LOGOUT":
-            return state.set("isUserLoggedIn",false);
+            return state.set("isUserLoggedIn",false).set("user", Map());
+        case "LOGIN":
+            return state.set("isUserLoggedIn",true).set('user', actions.user);
         default:
             return state;
     }
