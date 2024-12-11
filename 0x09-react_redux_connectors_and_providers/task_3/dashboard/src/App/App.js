@@ -103,12 +103,15 @@ class App extends React.Component {
 }
 
 export const mapStateToProps = (state)=>{
+  console.log(state)
   return {
-    isLoggedIn: state.get("isUserLoggedIn"),
-    displayDrawer: state.get('isNotificationDrawerVisible')
+
+    isLoggedIn: state.ui.get("isUserLoggedIn"),
+    displayDrawer: state.ui.get('isNotificationDrawerVisible')
   };
 
 };
+
 export const mapDispatchToProps = {
   displayNotificationDrawer,
   hideNotificationDrawer,

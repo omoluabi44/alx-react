@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.get("user")
+    user: state.ui.get("user")
   }
 }
 const mapDispatchToProps ={

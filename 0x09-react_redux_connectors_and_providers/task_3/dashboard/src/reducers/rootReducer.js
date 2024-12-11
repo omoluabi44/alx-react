@@ -4,7 +4,7 @@ import courseReducer from "./courseReducer";
 import { combineReducers } from 'redux';
 
 
-const rootReducer = combineReducers({
+const rootReducers = combineReducers({
     courses:courseReducer,
     notification: notificationReducer,
     ui:uiReducer
